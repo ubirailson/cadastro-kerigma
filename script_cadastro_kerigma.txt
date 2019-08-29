@@ -1,0 +1,5 @@
+insert into fase_caminho_paz values (1,'Kerigma');
+insert into fase_caminho_paz values (2,'Filoteia');
+insert into fase_caminho_paz values (3,'Metanoia');
+insert into fase_caminho_paz values (4,'Koinonia');
+insert into fase_caminho_paz values (5,'Martiria');

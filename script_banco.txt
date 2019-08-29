@@ -1,0 +1,78 @@
+-- Database: renascer
+
+-- DROP DATABASE renascer;
+
+CREATE DATABASE renascer
+  WITH OWNER = shalom
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'Portuguese_Brazil.1252'
+       LC_CTYPE = 'Portuguese_Brazil.1252'
+       CONNECTION LIMIT = -1;
+
+
+CREATE SCHEMA public
+  AUTHORIZATION postgres;
+
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+COMMENT ON SCHEMA public
+  IS 'standard public schema';
+
+-- Sequence: sq_pessoa
+
+-- DROP SEQUENCE sq_pessoa;
+
+CREATE SEQUENCE sq_pessoa
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE sq_pessoa
+  OWNER TO shalom;
+
+-- Table: fase_caminho_paz
+
+-- DROP TABLE fase_caminho_paz;
+
+CREATE TABLE fase_caminho_paz
+(
+  id_fase bigint NOT NULL,
+  nome character varying(255) NOT NULL,
+  CONSTRAINT fase_caminho_paz_pkey PRIMARY KEY (id_fase)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE fase_caminho_paz
+  OWNER TO shalom;
+
+-- Table: pessoa
+
+-- DROP TABLE pessoa;
+
+CREATE TABLE pessoa
+(
+  id_pessoa bigint NOT NULL,
+  bairro character varying(255),
+  centroevangelizacao character varying(255),
+  comosoubedoevento character varying(255) NOT NULL,
+  datacadastro timestamp without time zone NOT NULL,
+  email character varying(255),
+  fone character varying(255),
+  grupo character varying(255),
+  nascimento date NOT NULL,
+  nome character varying(255) NOT NULL,
+  shalom boolean NOT NULL,
+  id_fase bigint,
+  CONSTRAINT pessoa_pkey PRIMARY KEY (id_pessoa),
+  CONSTRAINT fk_p9a3g4co6yitl9nuh8th45e32 FOREIGN KEY (id_fase)
+      REFERENCES fase_caminho_paz (id_fase) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE pessoa
+  OWNER TO shalom;

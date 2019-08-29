@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+.estilo-dimensao{
+    width: 200px;
+    <!-- height: 285px; Só altere o height caso queira forçar um tamanho, pois o navegador já deixa o tamanho proporcional se setar somente o width. -->
+}

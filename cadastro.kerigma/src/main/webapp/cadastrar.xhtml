@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main.xhtml">
+
+	<ui:define name="body">
+		   
+		<h:form id="form" prependId="false">
+			<p:focus context="fields"/> 
+			<p:fieldset legend="Cadastro Kerigma Shalom" toggleable="true"
+				toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+					<h:outputLabel value="Nome: " for="nome" styleClass="text-input" />
+					<h:inputText id="nome" maxlength="50" value="#{cadastrarPessoaMB.pessoa.nome}"
+						title="nome" />
+					<p:message for="nome" />
+
+					<h:outputLabel value="Telefones: " for="fone"
+						styleClass="text-input" />
+					<h:inputText id="fone" maxlength="20" value="#{cadastrarPessoaMB.pessoa.fone}"
+						title="fone" />
+					<p:message for="fone" />
+
+					<h:outputLabel value="Email: " for="email" styleClass="text-input" />
+					<h:inputText id="email" maxlength="100" value="#{cadastrarPessoaMB.pessoa.email}"
+						title="email" />
+					<p:message for="email" />
+
+					<h:outputLabel value="Bairro: " for="bairro"
+						styleClass="text-input" />
+					<h:inputText id="bairro" maxlength="50" value="#{cadastrarPessoaMB.pessoa.bairro}"
+						title="bairro" />
+					<p:message for="bairro" />
+
+					<h:outputLabel value="Município: " for="municipio"
+						styleClass="text-input" />
+					<h:selectOneMenu id="municipio"
+						value="#{cadastrarPessoaMB.pessoa.municipio.id}">
+						<f:selectItems value="#{cadastrarPessoaMB.municipios}"
+							var="municipio" itemLabel="#{municipio.nome}"
+							itemValue="#{municipio.id}" itemLabelEscaped="true" />
+					</h:selectOneMenu>
+					<p:message for="municipio" />
+
+					<h:outputLabel value="Sexo: " for="sexo" styleClass="text-input" />
+					<h:selectOneRadio id="sexo"
+						value="#{cadastrarPessoaMB.pessoa.sexo}">
+						<f:selectItem itemLabel="Masculino" itemValue="M" />
+						<f:selectItem itemLabel="Feminino" itemValue="F" />
+					</h:selectOneRadio>
+					<p:message for="sexo" />
+
+					<h:outputLabel value="Data de nascimento: " for="nascimento"
+						styleClass="text-input" />
+					<p:inputMask id="nascimento" maxlength="10" mask="99/99/9999"
+						value="#{cadastrarPessoaMB.pessoa.nascimento}" title="nascimento">
+						<f:convertDateTime type="date" timeZone="GMT-3" pattern="DD/mm/yyyy" />
+					</p:inputMask>
+					<p:message for="nascimento" />
+
+					<h:outputLabel value="Como soube do evento?" for="comosoube"
+						styleClass="text-input" />
+					<h:inputText id="comosoube" maxlength="30"
+						value="#{cadastrarPessoaMB.pessoa.comoSoubeDoEvento}"
+						title="comosoube" />
+					<p:message for="comosoube" />
+
+					<h:outputLabel value="É obra/vocacionado/membro do Shalom? " for="shalom"
+						styleClass="text-input" />
+					<h:selectBooleanCheckbox id="shalom"
+						value="#{cadastrarPessoaMB.pessoa.shalom}" />
+					<p:message for="shalom" />
+
+					<h:outputLabel
+						value="É engajado em movimento/comunidade/pastoral? "
+						for="outroMovimento" styleClass="text-input" />
+					<h:selectBooleanCheckbox id="outroMovimento"
+						value="#{cadastrarPessoaMB.pessoa.outroMovimento}" />
+					<p:message for="outroMovimento" />
+
+					<h:outputLabel value="Frequenta missa? " for="missa"
+						styleClass="text-input" />
+					<h:selectBooleanCheckbox id="missa"
+						value="#{cadastrarPessoaMB.pessoa.frequentaMissa}" />
+					<p:message for="missa" />
+
+					<h:outputLabel value="Frequenta outra religião? " for="religiao"
+						styleClass="text-input" />
+					<h:selectBooleanCheckbox id="religiao"
+						value="#{cadastrarPessoaMB.pessoa.outraReligiao}" />
+					<p:message for="religiao" />
+
+				</h:panelGrid>
+			</p:fieldset>
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="Cadastrar"
+						action="#{cadastrarPessoaMB.cadastrar}" ajax="false" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+		</h:form>
+				<script type="text/javascript">
+			window.onload = function() {
+			    document.getElementById('form:nome').focus();
+			}
+		</script>
+		
+	</ui:define>
+</ui:composition>
